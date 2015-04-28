@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/source/Core/__history
+/source/Packages/__history
+/source/Packages/NovusDevNETVCLPackages_D16.groupproj.local
+/source/Packages/NovusDevNETVCLPackages_D11.groupproj
+/source/Packages/NovusDevNETVCLPackages_D12.groupproj
+/source/Packages/NovusDevNETVCLPackages_D15.groupproj
+/source/Packages/NovusDevNETVCLPackages_D16.groupproj
+*.local
+*.identcache
+/Units/D18/Win32
