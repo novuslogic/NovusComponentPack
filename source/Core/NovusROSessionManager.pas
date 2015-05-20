@@ -64,5 +64,4 @@ procedure Register;
 begin
   RegisterComponents('Novus Component Pack RemObjects SDK', [TNovusROSessionManager]);
 end;
-
 end.

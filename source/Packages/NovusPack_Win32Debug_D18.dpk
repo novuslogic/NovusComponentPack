@@ -1,4 +1,4 @@
-package NovusPack_RO_D18;
+package NovusPack_Win32Debug_D18;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -24,19 +24,16 @@ package NovusPack_RO_D18;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Novus Component Pack RemObjects SDK  (Delphi XE4) Win32'}
+{$DESCRIPTION 'Novus Component Pack Win32 Debug  (Delphi XE4) Win32'}
 {$IMPLICITBUILD OFF}
 
 requires
   rtl,
-  RemObjects_Core_D18,
-  IndySystem,
-  IndyProtocols,
-  IndyCore,
-  RemObjects_Indy_D18;
+  NovusCodeLibrary_Core_D18;
 
 contains
-  NovusROSessionManager in '..\Core\NovusROSessionManager.pas',
-  NovusROIndyHTTPServerEx in '..\Core\NovusROIndyHTTPServerEx.pas';
+  NovusExceptions in '..\Core\NovusExceptions.pas',
+  NovusWin32Debug in '..\Core\NovusWin32Debug.pas',
+  NovusWin32DebugBase in '..\Core\NovusWin32DebugBase.pas';
 
 end.
