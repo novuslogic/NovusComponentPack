@@ -12,3 +12,4 @@
 *.local
 *.identcache
 /Units/D18/Win32
+/source/Core/NovusRODBSessionManager.pas
