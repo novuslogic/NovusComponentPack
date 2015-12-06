@@ -24,7 +24,7 @@ package NovusPack_RODA_D18;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Novus Component Pack Remobjects DataAbstract  (Delphi XE4) Win32'}
+{$DESCRIPTION 'NovusDevNET VCL Remobject Data Abstract  (Delphi XE4) Win32'}
 {$IMPLICITBUILD OFF}
 
 requires
@@ -34,6 +34,7 @@ requires
   NovusCodeLibrary_Core_D18;
 
 contains
-  NovusDAQuery in '..\Core\NovusDAQuery.pas';
+  NovusDAQuery in '..\Core\NovusDAQuery.pas',
+  NovusRODBSessionManager in '..\Core\NovusRODBSessionManager.pas';
 
 end.

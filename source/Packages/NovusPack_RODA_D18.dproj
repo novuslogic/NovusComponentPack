@@ -75,7 +75,7 @@
         <Version>7.0</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <DCC_Description>Novus Component Pack Remobjects DataAbstract  (Delphi XE4) Win32</DCC_Description>
+        <DCC_Description>NovusDevNET VCL Remobject Data Abstract  (Delphi XE4) Win32</DCC_Description>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_DcuOutput>..\..\Units\D18\Win32\</DCC_DcuOutput>
     </PropertyGroup>
@@ -140,6 +140,7 @@
         <DCCReference Include="DataAbstract_Core_D18.dcp"/>
         <DCCReference Include="NovusCodeLibrary_Core_D18.dcp"/>
         <DCCReference Include="..\Core\NovusDAQuery.pas"/>
+        <DCCReference Include="..\Core\NovusRODBSessionManager.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

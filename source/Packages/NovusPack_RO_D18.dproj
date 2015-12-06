@@ -92,7 +92,7 @@
         <DCC_DcuOutput>..\..\..\Units\D15</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <DCC_Description>Novus Component Pack RemObjects SDK  (Delphi XE4) Win32</DCC_Description>
+        <DCC_Description>NovusDevNET VCL Remobject SDK  (Delphi XE4) Win32</DCC_Description>
         <DCC_DcuOutput>..\..\Units\D18\Win32\</DCC_DcuOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
