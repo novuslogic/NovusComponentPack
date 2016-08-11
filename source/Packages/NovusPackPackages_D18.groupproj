@@ -9,6 +9,9 @@
         <Projects Include="NovusPack_RO_D18.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="NovusPack_Win32Debug_D18.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="NovusPack_RO_D18:Make">
         <MSBuild Projects="NovusPack_RO_D18.dproj" Targets="Make"/>
     </Target>
+    <Target Name="NovusPack_Win32Debug_D18">
+        <MSBuild Projects="NovusPack_Win32Debug_D18.dproj"/>
+    </Target>
+    <Target Name="NovusPack_Win32Debug_D18:Clean">
+        <MSBuild Projects="NovusPack_Win32Debug_D18.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NovusPack_Win32Debug_D18:Make">
+        <MSBuild Projects="NovusPack_Win32Debug_D18.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="NovusPack_RODA_D18;NovusPack_RO_D18"/>
+        <CallTarget Targets="NovusPack_RODA_D18;NovusPack_RO_D18;NovusPack_Win32Debug_D18"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="NovusPack_RODA_D18:Clean;NovusPack_RO_D18:Clean"/>
+        <CallTarget Targets="NovusPack_RODA_D18:Clean;NovusPack_RO_D18:Clean;NovusPack_Win32Debug_D18:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="NovusPack_RODA_D18:Make;NovusPack_RO_D18:Make"/>
+        <CallTarget Targets="NovusPack_RODA_D18:Make;NovusPack_RO_D18:Make;NovusPack_Win32Debug_D18:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

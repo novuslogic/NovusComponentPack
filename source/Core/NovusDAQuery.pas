@@ -10,6 +10,7 @@ Uses
 type
   TNovusDAQuery = class(TComponent)
   private
+    fbAutoParams: Boolean;
     fbPrepared : Boolean;
     fsSQLExecuteCommandMethodName: String;
     FsSQLGetDataMethodName: String;
@@ -26,7 +27,7 @@ type
     function GetSQL: tStringList;
     procedure SetSQL(Value: tStringList);
     procedure SetRemoteService(Value: TRORemoteService);
-    procedure ParseParams(var ASQL: string; AParams: TParams);
+
     function GetLocalSchema: TDASchema;
     procedure AfterScroll(DataTable: TDADataTable);
     procedure SetFetching(Value: Boolean);
@@ -82,6 +83,10 @@ type
          read fbFetching
          write SetFetching;
 
+      property AutoParams: Boolean
+         read fbAutoParams
+         write fbAutoParams;
+
   end;
 
 procedure Register;
@@ -94,8 +99,10 @@ begin
 
   fbFetching := False;
   fbFetchRequired := False;
-  
+
   fbPrepared := false;
+
+  AutoParams := True;
 
   fsSQLGetDataMethodName := 'SQLGetData';
   fsSQLExecuteCommandMethodName := 'SQLExecuteCommand';
@@ -118,13 +125,13 @@ begin
 end;
 
 procedure TNovusDAQuery.Open;
-Var
-  loField: tDAField;
 begin
  Try
    if SQL.text = '' then Exit;
 
    If fbPrepared = false then Prepare;
+
+   FDARemoteDataAdapter.Fill([FDADataTable], True, fbIncludeSchema);
 
    FDADataTable.Active := True;
  Except
@@ -153,7 +160,7 @@ begin
   FDADataTable := TDAMemDataTable.Create(NIL);
 
   FDADataTable.AfterScroll := AfterScroll;
-  
+
   FDataStreamer := TDABin2DataStreamer.Create(NIL);
 
   FDARemoteDataAdapter.DataStreamer := FDataStreamer;
@@ -167,10 +174,15 @@ begin
     begin
       Default := False;
       MethodName := SQLGetDataMethodName;
-      RefreshParams;
-      ParamByName('aSQLText').AsString := '';
-      ParamByName('aIncludeSchema').AsBoolean := fbIncludeSchema;
-      ParamByName('aMaxRecords').AsInteger := -1;
+
+      if AutoParams then
+        begin
+          RefreshParams;
+
+          ParamByName('aSQLText').AsString := '';
+          ParamByName('aIncludeSchema').AsBoolean := fbIncludeSchema;
+          ParamByName('aMaxRecords').AsInteger := -1;
+        end;
     end;
 
   with FDARemoteDataAdapter.UpdateDataCall do
@@ -178,16 +190,23 @@ begin
       Default := False;
 
       MethodName := SQLExecuteCommandMethodName;
-      RefreshParams;
 
-      ParamByName('aSQLText').AsString := '';
-      ParamByName('Result').AsInteger := 0;
+      if AutoParams then
+        begin
+          RefreshParams;
+
+          ParamByName('aSQLText').AsString := '';
+          ParamByName('Result').AsInteger := 0;
+        end;
     end;
 end;
 
 procedure TNovusDAQuery.Close;
 begin
   if Assigned(FDADataTable) then FDADataTable.Close;
+
+
+
 end;
 
 function TNovusDAQuery.GetSQL: tStringlist;
@@ -198,25 +217,6 @@ end;
 procedure TNovusDAQuery.SetSQL(Value: tStringList);
 begin
   FSQL := Value;
-end;
-
-procedure TNovusDAQuery.ParseParams(var ASQL: string; AParams: TParams);
-var
-i, p: integer;
-ident: string;
-begin
-  if Trim(ASQL) = '' then Exit;
-
-  for i := 0 to Aparams.Count - 1 do
-    begin
-      ident := ':' + Aparams[i].Name;
-      p := Pos(ident, ASQL);
-      if p > 0 then
-        begin
-          Delete(ASQL, p, Length(ident));
-          Insert(Aparams[i].AsString, ASQL, p);
-        end;
-  end;
 end;
 
 function TNovusDAQuery.GetLocalSchema: TDASchema;
@@ -230,6 +230,8 @@ begin
   Try
     if SQL.text = '' then Exit;
 
+    fbPrepared := True;
+
     with FDADataTable do
      begin
        Close;
@@ -239,11 +241,7 @@ begin
        FDARemoteDataAdapter.GetDataCall.ParamByName('aSQLText').AsString := SQL.Text;
 
        MaxRecords := FiMaxRecords;
-       
-       FDARemoteDataAdapter.Fill([FDADataTable], True, fbIncludeSchema);
      end;
-
-    fbPrepared := True;
 
  Except
    Showmessage(TNovusUtilities.GetExceptMess);
