@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{76AB0D6F-74F0-4EBF-B146-EB52E010BA16}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="NovusPack_RO.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="NovusPack_RODA.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="NovusPack_Win32Debug.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="NovusPack_RO">
+        <MSBuild Projects="NovusPack_RO.dproj"/>
+    </Target>
+    <Target Name="NovusPack_RO:Clean">
+        <MSBuild Projects="NovusPack_RO.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NovusPack_RO:Make">
+        <MSBuild Projects="NovusPack_RO.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="NovusPack_RODA">
+        <MSBuild Projects="NovusPack_RODA.dproj"/>
+    </Target>
+    <Target Name="NovusPack_RODA:Clean">
+        <MSBuild Projects="NovusPack_RODA.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NovusPack_RODA:Make">
+        <MSBuild Projects="NovusPack_RODA.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="NovusPack_Win32Debug">
+        <MSBuild Projects="NovusPack_Win32Debug.dproj"/>
+    </Target>
+    <Target Name="NovusPack_Win32Debug:Clean">
+        <MSBuild Projects="NovusPack_Win32Debug.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NovusPack_Win32Debug:Make">
+        <MSBuild Projects="NovusPack_Win32Debug.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="NovusPack_RO;NovusPack_RODA;NovusPack_Win32Debug"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="NovusPack_RO:Clean;NovusPack_RODA:Clean;NovusPack_Win32Debug:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="NovusPack_RO:Make;NovusPack_RODA:Make;NovusPack_Win32Debug:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

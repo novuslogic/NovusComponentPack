@@ -1,4 +1,4 @@
-package NovusPack_RODA_D18;
+package NovusPack_RO;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -24,18 +24,18 @@ package NovusPack_RODA_D18;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'NovusDevNET VCL Remobject Data Abstract  (Delphi XE4) Win32'}
+{$DESCRIPTION 'Novus Component Pack  Remobject SDK'}
+{$LIBSUFFIX '180'}
 {$IMPLICITBUILD OFF}
 
 requires
   rtl,
   RemObjects_Core_D18,
-  DataAbstract_Core_D18,
-  NovusCodeLibrary_Core_D18;
+  RemObjects_Indy_D18;
 
 contains
-  NovusDAQuery in '..\Core\NovusDAQuery.pas',
-  NovusRODBSessionManager in '..\Core\NovusRODBSessionManager.pas',
-  NovusROOlympiaSessionManager in '..\Core\NovusROOlympiaSessionManager.pas';
+  NovusROSessionManager in '..\..\Core\NovusROSessionManager.pas',
+  NovusROIndyHTTPServerEx in '..\..\Core\NovusROIndyHTTPServerEx.pas',
+  NovusROOlympiaSessionManager in '..\..\Core\NovusROOlympiaSessionManager.pas';
 
 end.

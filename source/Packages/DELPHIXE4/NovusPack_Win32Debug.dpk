@@ -1,4 +1,4 @@
-package NovusPack_Win32Debug_D18;
+package NovusPack_Win32Debug;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -24,16 +24,17 @@ package NovusPack_Win32Debug_D18;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Novus Component Pack Win32 Debug  (Delphi XE4) Win32'}
+{$DESCRIPTION 'Novus Component Pack Win32 Debug'}
+{$LIBSUFFIX '180'}
 {$IMPLICITBUILD OFF}
 
 requires
   rtl,
-  NovusCodeLibrary_Core_D18;
+  NovusCodeLibrary_Core;
 
 contains
-  NovusExceptions in '..\Core\NovusExceptions.pas',
-  NovusWin32Debug in '..\Core\NovusWin32Debug.pas',
-  NovusWin32DebugBase in '..\Core\NovusWin32DebugBase.pas';
+  NovusExceptions in '..\..\Core\NovusExceptions.pas',
+  NovusWin32Debug in '..\..\Core\NovusWin32Debug.pas',
+  NovusWin32DebugBase in '..\..\Core\NovusWin32DebugBase.pas';
 
 end.
