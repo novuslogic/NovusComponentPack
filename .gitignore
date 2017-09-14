@@ -13,3 +13,8 @@
 *.identcache
 /Units/D18/Win32
 
+/source/Packages/DELPHIXE8/__history
+/units
+/source/Packages/DELPHIXE8/NovusPack_RO.stat
+/source/Packages/DELPHIXE8/NovusPack_RODA.stat
+/source/Packages/DELPHIXE8/NovusPack_Win32Debug.stat
