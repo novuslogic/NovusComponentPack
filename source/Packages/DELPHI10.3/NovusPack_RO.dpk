@@ -1,11 +1,11 @@
-package NovusPack_RODA;
+package NovusPack_RO;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO ON}
+{$DEBUGINFO OFF}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
@@ -24,18 +24,19 @@ package NovusPack_RODA;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Novus Component Pack Remobject Data Abstract  '}
-{$LIBSUFFIX '180'}
+{$DESCRIPTION 'Novus Component Pack  Remobject SDK'}
+{$LIBSUFFIX '260'}
 {$IMPLICITBUILD OFF}
 
 requires
   rtl,
-  RemObjects_Core_D18,
-  DataAbstract_Core_D18,
-  NovusCodeLibrary_Core;
+  RemObjects_Core_D26,
+  RemObjects_Indy_D26,
+  RemObjects_Server_D26;
 
 contains
-  NovusDAQuery in '..\..\Core\NovusDAQuery.pas',
-  NovusRODBSessionManager in '..\..\Core\NovusRODBSessionManager.pas';
+  NovusROSessionManager in '..\..\Core\NovusROSessionManager.pas',
+  NovusROIndyHTTPServerEx in '..\..\Core\NovusROIndyHTTPServerEx.pas',
+  NovusROOlympiaSessionManager in '..\..\Core\NovusROOlympiaSessionManager.pas';
 
 end.

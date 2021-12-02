@@ -25,12 +25,12 @@ package NovusPack_Win32Debug;
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'Novus Component Pack Win32 Debug'}
-{$LIBSUFFIX '220'}
+{$LIBSUFFIX '270'}
 {$IMPLICITBUILD OFF}
 
 requires
   rtl,
-  NovusCodeLibrary_Core;
+  NovusCodeLibrary_Utils;
 
 contains
   NovusExceptions in '..\..\Core\NovusExceptions.pas',

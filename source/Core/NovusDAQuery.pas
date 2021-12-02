@@ -5,7 +5,7 @@ interface
 Uses
   uDARemoteDataAdapter, uDAMemDataTable, uDABin2DataStreamer, uRORemoteService,
   uRODL, uROTypes, Classes, DB,NovusUtilities, Dialogs,SysUtils, uDAInterfaces,
-  uDAClasses, DataAbstract4_Intf, uDADataTable;
+  uDASchema, DataAbstract4_Intf, uDADataTable;
 
 type
   TNovusDAQuery = class(TComponent)
@@ -28,7 +28,7 @@ type
     procedure SetSQL(Value: tStringList);
     procedure SetRemoteService(Value: TRORemoteService);
 
-    function GetLocalSchema: TDASchema;
+//    function GetLocalSchema: TDASchema;
     procedure AfterScroll(DataTable: TDADataTable);
     procedure SetFetching(Value: Boolean);
 
@@ -44,8 +44,8 @@ type
 
     function GetVCLFields: TFields;
 
-    property LocalSchema: TDASchema
-      read GetLocalSchema;
+//    property LocalSchema: TDASchema
+//      read GetLocalSchema;
 
     property DADataTable: TDAMemDataTable
       read FDADataTable
@@ -219,11 +219,12 @@ begin
   FSQL := Value;
 end;
 
+(*
 function TNovusDAQuery.GetLocalSchema: TDASchema;
 begin
   Result := FDADataTable.LocalSchema;
 end;
-
+*)
 
 procedure TNovusDAQuery.Prepare;
 begin

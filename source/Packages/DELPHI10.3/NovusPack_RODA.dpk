@@ -25,14 +25,16 @@ package NovusPack_RODA;
 {$IMAGEBASE $400000}
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'Novus Component Pack Remobject Data Abstract  '}
-{$LIBSUFFIX '220'}
+{$LIBSUFFIX '260'}
 {$IMPLICITBUILD OFF}
 
 requires
   rtl,
-  NovusCodeLibrary_Core,
-  RemObjects_Core_D22,
-  DataAbstract_Core_D22;
+  NovusCodeLibrary_Utils,
+  RemObjects_Core_D26,
+  DataAbstract_Core_D26,
+  RemObjects_Server_D26,
+  DataAbstract_SDDriver_D26;
 
 contains
   NovusDAQuery in '..\..\Core\NovusDAQuery.pas',

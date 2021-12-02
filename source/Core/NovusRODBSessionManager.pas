@@ -3,7 +3,8 @@ unit NovusRODBSessionManager;
 interface
 
 uses
-  SysUtils, Classes, uROClient, uROSessions, uDADBSessionManager, uDAInterfaces;
+  SysUtils, Classes, uROClient, uROSessions, uDADBSessionManager, uDAInterfaces,
+  uDAServerInterfaces, uDAFields;
 
 type
   TAfterCheckSessionIsExpired = procedure(Sender: TObject; aSession : TROSession; aSessionIDString: String; Var IsExpired: Boolean) of object;
