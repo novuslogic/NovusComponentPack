@@ -79,11 +79,11 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_UsePackage>vclx;vcl;vclactnband;vcldb;IndySystem;IndyProtocols;IndyCore;RemObjects_Indy_D18;RemObjects_Indy_D22;RemObjects_Indy_D26;SqlDir270;RemObjects_Indy_D27;RemObjects_Server_Indy_D27;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vclx;vcl;vclactnband;vcldb;IndySystem;IndyProtocols;IndyCore;RemObjects_Indy_D18;RemObjects_Indy_D22;RemObjects_Indy_D26;SqlDir270;RemObjects_Indy_D27;RemObjects_Server_Indy_D27;NovusPack_RODA;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_UsePackage>vclx;vcl;vclactnband;vcldb;IndySystem;IndyProtocols;IndyCore;RemObjects_Indy_D18;RemObjects_Indy_D22;RemObjects_Indy_D26;SqlDir270;RemObjects_Indy_D27;RemObjects_Server_Indy_D27;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vclx;vcl;vclactnband;vcldb;IndySystem;IndyProtocols;IndyCore;RemObjects_Indy_D18;RemObjects_Indy_D22;RemObjects_Indy_D26;SqlDir270;RemObjects_Indy_D27;RemObjects_Server_Indy_D27;NovusPack_RODA;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <Version>7.0</Version>
@@ -1137,6 +1137,9 @@
         <DCCReference Include="RemObjects_Indy_D27.dcp"/>
         <DCCReference Include="RemObjects_Server_D27.dcp"/>
         <DCCReference Include="RemObjects_Server_Indy_D27.dcp"/>
+        <DCCReference Include="DataAbstract_Core_D27.dcp"/>
+        <DCCReference Include="DataAbstract_Server_D27.dcp"/>
+        <DCCReference Include="NovusPack_RODA.dcp"/>
         <DCCReference Include="..\..\Core\NovusROSessionManager.pas"/>
         <DCCReference Include="..\..\Core\NovusROIndyHTTPServerEx.pas"/>
         <DCCReference Include="..\..\Core\NovusROOlympiaSessionManager.pas"/>

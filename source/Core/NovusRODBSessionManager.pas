@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, uROClient, uROSessions, uDADBSessionManager, uDAInterfaces,
-  uDAServerInterfaces, uDAFields;
+  uDAServerInterfaces, uDAFields, uDACore, uROSystem;
 
 type
   TAfterCheckSessionIsExpired = procedure(Sender: TObject; aSession : TROSession; aSessionIDString: String; Var IsExpired: Boolean) of object;
@@ -25,9 +25,10 @@ type
     { Protected declarations }
     function DoCheckSessionIsExpired(aSession : TROSession) : boolean; override;
     function DoFindSession(const aSessionID: TGUID; aUpdateTime: Boolean): TROSession; override;
-
   public
     { Public declarations }
+    function CreateSession(const aSessionID: TGUID): TROSession;
+    procedure CreateSession2(aSession: TROSession);
   published
     { Published declarations }
      property OnAfterCheckSessionIsExpired: TAfterCheckSessionIsExpired
@@ -50,6 +51,44 @@ uses
 procedure Register;
 begin
   RegisterComponents('Novus Component Pack Remobjects DataAbstract', [TNovusRODBSessionManager]);
+end;
+
+function TNovusRODBSessionManager.CreateSession(const aSessionID: TGUID): TROSession;
+begin
+  result := DoCreateSession(aSessionID);
+end;
+
+procedure TNovusRODBSessionManager.CreateSession2(aSession: TROSession);
+var
+  lConnection: IDAConnection;
+  lCommand: IDASQLCommand;
+  lData: Binary;
+begin
+  lConnection := GetConnection;
+
+  lCommand := Schema.NewCommand(lConnection, InsertSessionCommand);
+  lCommand.ParamByName(FieldNameCreated).AsDateTime := aSession.Created;
+
+  lCommand.ParamByName(FieldNameSessionID).AsString := DoConvertGUID(aSession.SessionID);
+  lCommand.ParamByName(FieldNameLastAccessed).AsDateTime := aSession.LastAccessed;
+
+  lData := Binary.Create;
+  try
+    aSession.SaveToStream(lData, True);
+    lData.Seek(0, TSeekOrigin(soFromBeginning));
+    lCommand.ParamByName(FieldNameData).LoadFromStream(NewROStream(lData, false));
+  finally
+    FreeOrDisposeOf(lData);
+  end;
+  BeginTransaction(lConnection);
+  try
+    lCommand.Execute();
+
+    CommitTransaction(lConnection);
+  except
+    RollbackTransaction(lConnection);
+    raise;
+  end;
 end;
 
 function TNovusRODBSessionManager.DoCheckSessionIsExpired(aSession : TROSession) : boolean;
