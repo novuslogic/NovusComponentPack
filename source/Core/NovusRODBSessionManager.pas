@@ -64,31 +64,41 @@ var
   lCommand: IDASQLCommand;
   lData: Binary;
 begin
-  lConnection := GetConnection;
+  Try
+    lConnection := GetConnection;
 
-  lCommand := Schema.NewCommand(lConnection, InsertSessionCommand);
-  lCommand.ParamByName(FieldNameCreated).AsDateTime := aSession.Created;
+    lCommand := Schema.NewCommand(lConnection, InsertSessionCommand);
+    lCommand.ParamByName(FieldNameCreated).AsDateTime := aSession.Created;
 
-  lCommand.ParamByName(FieldNameSessionID).AsString := DoConvertGUID(aSession.SessionID);
-  lCommand.ParamByName(FieldNameLastAccessed).AsDateTime := aSession.LastAccessed;
+    lCommand.ParamByName(FieldNameSessionID).AsString := DoConvertGUID(aSession.SessionID);
+    lCommand.ParamByName(FieldNameLastAccessed).AsDateTime := aSession.LastAccessed;
 
-  lData := Binary.Create;
-  try
-    aSession.SaveToStream(lData, True);
-    lData.Seek(0, TSeekOrigin(soFromBeginning));
-    lCommand.ParamByName(FieldNameData).LoadFromStream(NewROStream(lData, false));
-  finally
-    FreeOrDisposeOf(lData);
-  end;
-  BeginTransaction(lConnection);
-  try
-    lCommand.Execute();
+    lData := Binary.Create;
+    try
+      aSession.SaveToStream(lData, True);
+      lData.Seek(0, TSeekOrigin(soFromBeginning));
+      lCommand.ParamByName(FieldNameData).LoadFromStream(NewROStream(lData, false));
+    finally
+      FreeOrDisposeOf(lData);
+    end;
+    BeginTransaction(lConnection);
+    try
+      lCommand.Execute();
 
-    CommitTransaction(lConnection);
-  except
-    RollbackTransaction(lConnection);
-    raise;
-  end;
+      CommitTransaction(lConnection);
+    except
+      RollbackTransaction(lConnection);
+      raise;
+    end;
+  Finally
+    lCommand := nil;
+
+    if Assigned(lConnection) then
+      begin
+        lConnection.Close;
+        lConnection := nil;
+      end;
+  End;
 end;
 
 function TNovusRODBSessionManager.DoCheckSessionIsExpired(aSession : TROSession) : boolean;
@@ -158,6 +168,9 @@ begin
     RollbackTransaction(lConnection);
     raise;
   end;
+
+  lDataSet := nil;
+  lConnection := nil;
 end;
 
 procedure TNovusRODBSessionManager.BeginTransaction(AConnection: IDAConnection);
