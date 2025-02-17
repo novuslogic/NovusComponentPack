@@ -1,0 +1,45 @@
+package NovusPack_RO;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Novus Component Pack  Remobject SDK'}
+{$LIBSUFFIX '290'}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  RemObjects_Core_D29,
+  RemObjects_Indy_D29,
+  RemObjects_Server_D29,
+  RemObjects_Server_Indy_D29,
+  DataAbstract_Core_D29,
+  DataAbstract_Server_D29;
+
+contains
+  NovusROSessionManager in '..\..\Core\NovusROSessionManager.pas',
+  NovusROIndyHTTPServerEx in '..\..\Core\NovusROIndyHTTPServerEx.pas',
+  NovusROOlympiaSessionManager in '..\..\Core\NovusROOlympiaSessionManager.pas';
+
+end.

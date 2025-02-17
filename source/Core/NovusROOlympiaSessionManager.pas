@@ -2,8 +2,7 @@ unit NovusROOlympiaSessionManager;
 
 interface
 
-Uses Classes, uROOlympiaSessionManager, uROSessions, uROTypes, uROClasses, SysUtils,
-      NovusRODBSessionManager;
+Uses Classes, uROOlympiaSessionManager, uROSessions, uROTypes, uROClasses, SysUtils;
 
 type
   TNovusROOlympiaSessionManager = class(TROOlympiaSessionManager)

@@ -1,5 +1,9 @@
 # Chnagelog
 
+17/02/2025
+
+* Support for Delphi 12
+
 20/12/2024 
 
 * New class TNovusROEventSessionManager descended from tROEventSessionManager
