@@ -35,8 +35,7 @@ requires
   RemObjects_Server_D27,
   RemObjects_Server_Indy_D27,
   DataAbstract_Core_D27,
-  DataAbstract_Server_D27,
-  NovusPack_RODA;
+  DataAbstract_Server_D27;
 
 contains
   NovusROSessionManager in '..\..\Core\NovusROSessionManager.pas',

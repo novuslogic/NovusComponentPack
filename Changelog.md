@@ -1,5 +1,9 @@
 # Chnagelog
 
+13/03/2025
+
+* Fixed Reference in package NovusPack_RO.dpk Delphi 10.4
+
 17/02/2025
 
 * Support for Delphi 12
